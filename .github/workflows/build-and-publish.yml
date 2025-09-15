@@ -48,11 +48,9 @@ jobs:
       - name: Deploy new version
         env:
           NOMAD_CACERT: admin-ui-ca.crt
-          NOMAD_TOKEN: ${{ secrets.NOMAD_TOKEN_OPERATOR_CHECKS_DEPLOY }}
+          NOMAD_TOKEN: ${{ secrets.NOMAD_TOKEN_TEST_BUILD_DEPLOY }}
           NOMAD_ADDR: ${{ secrets.NOMAD_ADDR }}
         run: |
-          echo NOMAD_TOKEN ${#NOMAD_TOKEN}
-          echo NOMAD_ADDR ${#NOMAD_ADDR}
           curl -L https://releases.hashicorp.com/nomad/1.10.5/nomad_1.10.5_linux_amd64.zip -o nomad.zip
           unzip nomad.zip
           sed -i "s/\[\[ .commit_sha \]\]/${GITHUB_SHA}/g" test-build-hello-world.hcl
