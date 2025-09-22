@@ -8,7 +8,7 @@ on:
 env:
   IMAGE_NAME: test-build
   # REGISTRY: ghcr.io
-  REGISTRY: containers.opts.anyone.tech
+  REGISTRY: containers.ops.anyone.tech
 
 jobs:
   push:
