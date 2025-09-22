@@ -30,6 +30,8 @@ jobs:
             --label "runnumber=${GITHUB_RUN_ID}"
       - name: Log in to registry
         run: |
+          echo "DOCKER_USERNAME length: ${#DOCKER_USERNAME}"
+          echo "DOCKER_PASSWORD length: ${#DOCKER_PASSWORD}"
           echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin $REGISTRY
       - name: Push image
         run: |
