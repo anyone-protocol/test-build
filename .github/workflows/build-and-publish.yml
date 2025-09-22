@@ -7,6 +7,8 @@ on:
       - v*
 env:
   IMAGE_NAME: test-build
+  # REGISTRY: ghcr.io
+  REGISTRY: containers.opts.anyone.tech
 
 jobs:
   push:
@@ -27,12 +29,13 @@ jobs:
             --tag $IMAGE_NAME \
             --label "runnumber=${GITHUB_RUN_ID}"
       - name: Log in to registry
-        run: |
-          echo "${{ secrets.GITHUB_TOKEN }}" | \
-          docker login ghcr.io -u $ --password-stdin
+        # run: |
+        #   echo "${{ secrets.GITHUB_TOKEN }}" | \
+        #   docker login $REGISTRY -u $ --password-stdin
+        run: docker login $REGISTRY -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
       - name: Push image
         run: |
-          IMAGE_ID=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
+          IMAGE_ID=$REGISTRY/${{ github.repository_owner }}/$IMAGE_NAME
           # Change all uppercase to lowercase
           IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
           # Strip git ref prefix from version
