@@ -29,10 +29,10 @@ jobs:
             --tag $IMAGE_NAME \
             --label "runnumber=${GITHUB_RUN_ID}"
       - name: Log in to registry
-        # run: |
-        #   echo "${{ secrets.GITHUB_TOKEN }}" | \
-        #   docker login $REGISTRY -u $ --password-stdin
-        run: docker login $REGISTRY -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+        run: |
+          # echo "${{ secrets.GITHUB_TOKEN }}" | \
+          echo $DOCKER_PASSWORD | \
+          docker login $REGISTRY -u $DOCKER_USERNAME --password-stdin
       - name: Push image
         run: |
           IMAGE_ID=$REGISTRY/${{ github.repository_owner }}/$IMAGE_NAME
