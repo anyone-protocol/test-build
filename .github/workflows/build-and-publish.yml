@@ -5,6 +5,8 @@ on:
     branches: main
     tags:
       - v*
+  pull_request:
+    types: [opened, synchronize, closed]
 env:
   IMAGE_NAME: test-build
   # REGISTRY: ghcr.io
