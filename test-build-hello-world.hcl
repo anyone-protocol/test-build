@@ -14,11 +14,23 @@ job "test-build-hello-world" {
     task "test-build-hello-world-task" {
       driver = "docker"
       config {
-        image = "ghcr.io/anyone-protocol/test-build:${VERSION}"
+        image = "${CONTAINER_REGISTRY_ADDR}/anyone-protocol/test-build:${VERSION}"
       }
 
       env {
         VERSION="[[ .commit_sha ]]"
+      }
+
+      consul {}
+
+      template {
+        data = <<-EOF
+        {{- range service "anon-container-registry" }}
+        CONTAINER_REGISTRY_ADDR="{{ .Address }}:{{ .Port }}"
+        {{- end }}
+        EOF
+        env = true
+        destination = "local/env"
       }
     }
   }
