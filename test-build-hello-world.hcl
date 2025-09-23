@@ -28,7 +28,7 @@ job "test-build-hello-world" {
       template {
         data = <<-EOF
         {{- range service "anon-container-registry" }}
-        CONTAINER_REGISTRY_ADDR="http://{{ .Address }}:{{ .Port }}"
+        CONTAINER_REGISTRY_ADDR="{{ .Address }}:{{ .Port }}"
         {{- end }}
         EOF
         env = true
