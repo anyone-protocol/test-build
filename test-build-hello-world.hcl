@@ -14,7 +14,7 @@ job "test-build-hello-world" {
     task "test-build-hello-world-task" {
       driver = "docker"
       config {
-        image = "${CONTAINER_REGISTRY_ADDR}/anyone-protocol/test-build:${VERSION}"
+        image = "containers.ops.anyone.tech/anyone-protocol/test-build:${VERSION}"
       }
 
       env {
@@ -26,7 +26,7 @@ job "test-build-hello-world" {
       template {
         data = <<-EOF
         {{- range service "anon-container-registry" }}
-        CONTAINER_REGISTRY_ADDR="http://{{ .Address }}:{{ .Port }}"
+        HTTP_PROXY="http://{{ .Address }}:{{ .Port }}"
         {{- end }}
         EOF
         env = true
