@@ -4,8 +4,10 @@ job "test-build-hello-world" {
   namespace = "operations"
 
   constraint {
-    attribute = "${meta.pool}"
-    value = "operations"
+    attribute = "${node.unique.id}"
+    value = "2d423f2c-5ab2-0106-ef1f-56f953626d87"
+    # attribute = "${meta.pool}"
+    # value = "operations"
   }
 
   group "test-build-hello-world-group" {
