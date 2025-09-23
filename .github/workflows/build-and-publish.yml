@@ -36,7 +36,7 @@ jobs:
           echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin $REGISTRY
       - name: Push image
         run: |
-          IMAGE_ID=$REGISTRY/${{ github.repository_owner }}/$IMAGE_NAME
+          IMAGE_ID=${{ github.repository_owner }}/$IMAGE_NAME
           # Change all uppercase to lowercase
           IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
           # Strip git ref prefix from version
