@@ -25,7 +25,9 @@ job "test-build-hello-world" {
 
       template {
         data = <<-EOF
-        CONTAINER_REGISTRY_ADDR="https://internal.containers.ops.anyone.tech"
+        {{- range service "anon-container-registry" }}
+        CONTAINER_REGISTRY_ADDR="http://{{ .Address }}:{{ .Port }}"
+        {{- end }}
         EOF
         env = true
         destination = "local/env"
