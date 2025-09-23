@@ -26,7 +26,7 @@ job "test-build-hello-world" {
       template {
         data = <<-EOF
         {{- range service "anon-container-registry" }}
-        HTTP_PROXY="http://{{ .Address }}:{{ .Port }}"
+        HTTPS_PROXY="http://{{ .Address }}:{{ .Port }}"
         {{- end }}
         EOF
         env = true
