@@ -1,6 +1,6 @@
 job "test-build-hello-world" {
   datacenters = ["ator-fin"]
-  type = "service"
+  type = "batch"
   namespace = "dev-services"
 
   constraint {
