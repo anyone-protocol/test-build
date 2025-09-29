@@ -28,12 +28,12 @@ jobs:
             --file Dockerfile \
             --tag $IMAGE_NAME \
             --label "runnumber=${GITHUB_RUN_ID}"
-      - name: Log in to registry
-        env:
-          DOCKER_USERNAME: ${{ secrets.ANON_CONTAINER_REGISTRY_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.ANON_CONTAINER_REGISTRY_PASSWORD }}
-        run: |
-          echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin $REGISTRY
+      # - name: Log in to registry
+      #   env:
+      #     DOCKER_USERNAME: ${{ secrets.ANON_CONTAINER_REGISTRY_USERNAME }}
+      #     DOCKER_PASSWORD: ${{ secrets.ANON_CONTAINER_REGISTRY_PASSWORD }}
+      #   run: |
+      #     echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin $REGISTRY
       - name: Push image
         run: |
           IMAGE_ID=$REGISTRY/${{ github.repository_owner }}/$IMAGE_NAME
