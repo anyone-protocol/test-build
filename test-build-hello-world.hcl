@@ -14,7 +14,7 @@ job "test-build-hello-world" {
     task "test-build-hello-world-task" {
       driver = "docker"
       config {
-        image = "containers.ops.anyone.tech/anyone-protocol/test-build:${VERSION}"
+        image = "containers-public.ops.anyone.tech/anyone-protocol/test-build:${VERSION}"
       }
 
       env {
