@@ -15,12 +15,6 @@ job "test-build-hello-world" {
       driver = "docker"
       config {
         image = "containers.ops.anyone.tech/anyone-protocol/test-build:${VERSION}"
-
-        auth {
-          server_address = "containers.ops.anyone.tech"
-          username = "[[ DOCKER_USER ]]"
-          password = "[[ DOCKER_PASSWORD ]]"
-        }
       }
 
       env {
