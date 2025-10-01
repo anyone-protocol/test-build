@@ -8,7 +8,7 @@ on:
 env:
   IMAGE_NAME: test-build
   # REGISTRY: ghcr.io
-  REGISTRY: containers.ops.anyone.tech
+  REGISTRY: containers-admin.ops.anyone.tech
 
 jobs:
   push:
@@ -54,8 +54,6 @@ jobs:
           NOMAD_CACERT: admin-ui-ca.crt
           NOMAD_TOKEN: ${{ secrets.NOMAD_TOKEN_TEST_BUILD_DEPLOY }}
           NOMAD_ADDR: ${{ secrets.NOMAD_ADDR }}
-          DOCKER_USERNAME: ${{ secrets.ANON_CONTAINER_REGISTRY_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.ANON_CONTAINER_REGISTRY_PASSWORD }}
         run: |
           curl -L https://releases.hashicorp.com/nomad/1.10.5/nomad_1.10.5_linux_amd64.zip -o nomad.zip
           unzip nomad.zip
